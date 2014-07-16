@@ -50,30 +50,13 @@ class TWE
 	# DIの状態ビット
 	def di(idx)
 		d = @status[33,2].to_i(16)
-		return d & 0x01 if idx == 1
-		return d & 0x02 if idx == 2
-		return d & 0x04 if idx == 3
-		return d & 0x08 if idx == 4
+		return (d >> 0) & 0x01 if idx == 1
+		return (d >> 1) & 0x01 if idx == 2
+		return (d >> 2) & 0x01 if idx == 3
+		return (d >> 3) & 0x01 if idx == 4
 	
 		0
 	end
 end
-
-def test_main
-	twe = TWE.parse(":7C81150121810076ED788793000BD32703014D0D27048348")
-	if twe.nil?
-		$stderr.puts "TWE.parse() failed..."
-		return
-	end
-
-	puts "twe.status : #{twe.status}"
-	puts "lqi : #{twe.lqi}"
-	puts "irn : #{twe.irn}"
-	puts "timestamp : #{twe.timestamp}"
-	puts "power_supply_voltage : #{twe.power_supply_voltage}"
-	puts "di(1) : #{twe.di(1)}"
-end
-
-test_main if __FILE__ == $0
 
 
