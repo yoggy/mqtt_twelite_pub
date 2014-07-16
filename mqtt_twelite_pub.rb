@@ -16,13 +16,13 @@ require 'pit'
 require './twe'
 
 config = Pit.get("mqtt_twelite", :require => {
-	"remote_host" => "mqtt broker host",
-	"remote_port" => "mqtt broker port",
-	"username"    => "mqtt username",
-	"password"    => "mqtt password",
-	"topic"       => "mqtt publish topic",
-	"dev"         => "serial port device file",
-	"idn:e:e
+	"remote_host" => "mqtt.example.com",
+	"remote_port" => 1883,
+	"username"    => "username",
+	"password"    => "password",
+	"topic"       => "topic",
+	"dev"         => "/dev/ttyUSB0",
+	"src_idn"     => "11223344"
 })
 
 conn_opts = {
@@ -44,6 +44,11 @@ loop do
 				twe = TWE.parse(l)
 				next if twe.nil?
 
+				if twe.irn != config["src_irn"]
+					$stderr.puts "ignore packet from irn=#{twe.irn}..."
+					next
+				end
+
 				h = {}
 				h["door"]      = twe.di(1)
 				h["lqi"]       = twe.lqi
@@ -52,7 +57,7 @@ loop do
 				json_str = JSON.generate(h)
 			
 				puts "[#{Time.now.iso8601}] publish : " + json_str
-				#c.publish(config["topic"], json_str)
+				c.publish(config["topic"], json_str)
 			end
 		end
 	rescue Exception => e
