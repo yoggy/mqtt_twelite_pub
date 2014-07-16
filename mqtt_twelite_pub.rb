@@ -10,7 +10,7 @@
 require 'rubygems'
 require 'serialport'
 require 'mqtt'
-require 'JSON'
+require 'json'
 require 'time'
 require 'pit'
 require './twe'
