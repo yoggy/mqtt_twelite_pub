@@ -57,6 +57,40 @@ class TWE
 	
 		0
 	end
+
+	# for debug...
+	def dump_str
+		return <<-EOS
+    lqi                  : #{lqi}
+    irn                  : #{irn}
+    timestamp            : #{timestamp}
+    power_supply_voltage : #{power_supply_voltage}
+    di1                  : #{di(1)}
+    di2                  : #{di(2)}
+    di3                  : #{di(3)}
+    di4                  : #{di(4)}
+		EOS
+	end
 end
 
+def usage
+	puts "usage : ./twe.rb [twe-lite client status packet string(0x81)]"
+	puts
+	exit 1
+end
 
+def main
+	usage if ARGV.size == 0
+	
+	twe = TWE.parse(ARGV[0])
+	if twe.nil?
+		puts "TWE.parse() failed..."
+		return
+	end
+
+	puts twe.dump_str
+end
+
+if __FILE__ == $0
+	main
+end
