@@ -22,7 +22,7 @@ config = Pit.get("mqtt_twelite", :require => {
 	"password"    => "password",
 	"topic"       => "topic",
 	"dev"         => "/dev/ttyUSB0",
-	"src_idn"     => "11223344"
+	"src_irn"     => "11223344"
 })
 
 conn_opts = {
