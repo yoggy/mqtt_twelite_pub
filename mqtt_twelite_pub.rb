@@ -50,7 +50,7 @@ loop do
 				h["power_supply_voltage"] = twe.power_supply_voltage
 				json_str = JSON.generate(h)
 			
-				puts "publish [#{Time.now.iso8601}]" + json_str
+				puts "[#{Time.now.iso8601}] publish : " + json_str
 				#c.publish(config["topic"], json_str)
 			end
 		end
