@@ -32,7 +32,7 @@ class TWE
 		@status[9, 2].to_i(16)
 	end
 
-	# 個体識別番号
+	# 個体識別番号 (individual recognition number)
 	def irn
 		@status[11,8]
 	end

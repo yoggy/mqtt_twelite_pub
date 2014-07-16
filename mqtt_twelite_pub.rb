@@ -22,6 +22,7 @@ config = Pit.get("mqtt_twelite", :require => {
 	"password"    => "mqtt password",
 	"topic"       => "mqtt publish topic",
 	"dev"         => "serial port device file",
+	"idn:e:e
 })
 
 conn_opts = {
