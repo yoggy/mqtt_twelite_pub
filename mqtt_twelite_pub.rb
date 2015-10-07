@@ -13,11 +13,7 @@ require 'mqtt'
 require 'json'
 require 'time'
 require 'pit'
-<<<<<<< HEAD
 require_relative 'twe'
-=======
-require_relative './twe'
->>>>>>> ac2ea69e5fe2e947c26bcf97613efc113503c0aa
 
 config = Pit.get("mqtt_twelite", :require => {
 	"remote_host" => "mqtt.example.com",
