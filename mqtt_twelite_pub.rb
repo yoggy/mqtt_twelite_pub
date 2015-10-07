@@ -15,6 +15,8 @@ require 'time'
 require 'pit'
 require_relative 'twe'
 
+$stdout.sync = true
+
 config = Pit.get("mqtt_twelite", :require => {
 	"remote_host" => "mqtt.example.com",
 	"remote_port" => 1883,
