@@ -1,0 +1,28 @@
+;
+; mqtt_mqtt_twelite_pub.conf - for supervisord configuration file
+;
+; install
+;     $ pwd
+;     $ sudo cp mqtt_twelite_pub.conf.sample /etc/supervisor/conf.d/mqtt_twelite_pub.conf
+;     $ sudo vi /etc/supervisor/conf.d/mqtt_twelite_pub.conf
+;       (fix path, etc...)
+;     $ sudo supervisorctl reread
+;     $ sudo supervisorctl add mqtt_twelite_pub
+;     $ sudo supervisorctl status
+;     mqtt_twelite_pub             RUNNING    pid 8192, uptime 0:00:30
+;
+; see also
+;     Supervisor: A Process Control System
+;     http://supervisord.org/
+;
+
+[program:mqtt_twelite_pub]
+command         = /usr/bin/ruby /home/pi/work/mqtt_twelite_pub/mqtt_twelite_pub.rb
+numprocs        = 1
+autostart       = true
+autorestart     = true
+user            = yoggy
+environment     = HOME=/home/pi/
+directory       = /home/pi/work/mqtt_twelite_pub/
+redirect_stderr = true
+stdout_logfile  = /home/pi/work/mqtt_twelite_pub/log.txt
